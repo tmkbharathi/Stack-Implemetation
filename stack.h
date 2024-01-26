@@ -11,14 +11,20 @@ template <class S>
 class mystack{
    private:
      sll* top;
+     unsigned int t_size;
    public:
      mystack()                      //default constructor
      {
         top=nullptr;
+        t_size=0;
      }
-    int empty()                     //empty stack means return 1 if anycontains return 0; 
+    bool empty()                     //empty stack means return 1 if anycontains return 0; 
     {
         return (top==nullptr);
+    }
+    unsigned int size()
+    {
+      return t_size;
     }
 };
 
