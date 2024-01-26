@@ -26,16 +26,6 @@ class mystack{
     {
       return t_size;
     }
-    ~mystack(){                       //destructor
-      if(top != nullptr)
-      {
-        sll* tmp = top;
-        while(tmp != nullptr)
-        {
-            delete tmp;
-            tmp=tmp->link;
-        }
-      }
     void push(int data){            //push the data in stack;
       sll* newnode = new sll;
       if(newnode==nullptr){
@@ -60,13 +50,25 @@ class mystack{
       delete tmp;
       return item;
     }
-    int top(){
+    int top(){                      //top of the stack
       if(empty())
       {
         cout << "Stack Underflow" << "\n";
         exit(1);
       }
       return l_top->data;
+    }
+    ~mystack(){                       //destructor
+      if(l_top != nullptr)
+      {
+        sll* tmp = l_top;
+        while(tmp->link != nullptr)
+        {
+            delete tmp;
+            tmp=tmp->link;
+        }
+        delete tmp;
+      }
     }
 };
 
