@@ -10,17 +10,17 @@ template <class S>
 //class declaration
 class mystack{
    private:
-     sll* top;
+     sll* l_top;
      unsigned int t_size;
    public:
      mystack()                      //default constructor
      {
-        top=nullptr;
+        l_top=nullptr;
         t_size=0;
      }
     bool empty()                     //empty stack means return 1 if anycontains return 0; 
     {
-        return (top==nullptr);
+        return (l_top==nullptr);
     }
     unsigned int size()
     {
@@ -33,8 +33,9 @@ class mystack{
         return;
       }
       newnode->data = data;
-      newnode->link = top;
-      top = newnode;
+      newnode->link = l_top;
+      t_size++;
+      l_top = newnode;
     }
     int pop(){                      //pop the data in stack;
       if(empty())
@@ -42,11 +43,20 @@ class mystack{
         cout << "Stack Underflow" << "\n";
         exit(1);
       }
-      sll* tmp = top;
+      sll* tmp = l_top;
       int item = tmp->data;
-      top=top->link;
+      l_top = l_top->link;
+      t_size--;
       delete tmp;
       return item;
+    }
+    int top(){
+      if(empty())
+      {
+        cout << "Stack Underflow" << "\n";
+        exit(1);
+      }
+      return l_top->data;
     }
 };
 
