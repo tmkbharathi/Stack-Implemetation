@@ -26,5 +26,16 @@ class mystack{
     {
       return t_size;
     }
+    ~mystack(){                       //destructor
+      if(top != nullptr)
+      {
+        sll* tmp = top;
+        while(tmp != nullptr)
+        {
+            delete tmp;
+            tmp=tmp->link;
+        }
+      }
+    }
 };
 
