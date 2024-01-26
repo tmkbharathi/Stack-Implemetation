@@ -26,5 +26,27 @@ class mystack{
     {
       return t_size;
     }
+    void push(int data){            //push the data in stack;
+      sll* newnode = new sll;
+      if(newnode==nullptr){
+        cout << "Stack overflow" << "\n";
+        return;
+      }
+      newnode->data = data;
+      newnode->link = top;
+      top = newnode;
+    }
+    int pop(){                      //pop the data in stack;
+      if(empty())
+      {
+        cout << "Stack Underflow" << "\n";
+        exit(1);
+      }
+      sll* tmp = top;
+      int item = tmp->data;
+      top=top->link;
+      delete tmp;
+      return item;
+    }
 };
 
