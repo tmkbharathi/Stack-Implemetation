@@ -18,9 +18,14 @@ int main()
   cout << "\n newst.size():" << newst.size();
   cout << "\n newst.top():" << newst.top();
   cout << "\n newst.pop():";
-  newstack(newst);
-  
-
+ // newstack(newst);
+  mystack<int>p, q, r;
+  p = q = r = newst;
+  newstack(p);
+  p.pop();
+  cout << "---\n";
+  newstack(q); 
+  newstack(p);
 /*  mystack<int>arr1;
   arr1.push(3);
   arr1.push(5);

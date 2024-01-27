@@ -23,5 +23,15 @@ namespace misc
       start = prev;
       return start;
   }
+
+  void clear(sll *cur)
+  {
+      while(cur != nullptr)
+      {
+        sll* nxt = cur->link;
+        delete cur;
+        cur = nxt;
+      }
+  }
 }
 

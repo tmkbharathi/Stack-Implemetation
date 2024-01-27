@@ -68,6 +68,32 @@ class mystack{
         }
         l_top = misc::reverselist(l_top);
     }
+    mystack& operator= (const mystack& rhs)                 //Copy assignment operator it just copy the values its shared memory
+    {                                                       
+       if (this != &rhs) {                                  // Check for self-assignment
+        cout << "assignment operator\n";
+        misc::clear(l_top);
+        
+        this->t_size = rhs.t_size;                          //shallow copy not here deep copy!
+        sll* rhs_cur = rhs.l_top;
+        sll* prev = nullptr;
+        while (rhs_cur != nullptr) 
+        {
+            sll* new_node = new sll;
+            new_node->data = rhs_cur->data;
+            if (prev == nullptr) 
+            {
+                l_top = new_node;
+            } 
+            else {
+                prev->link = new_node;
+            }
+            prev = new_node;
+            rhs_cur = rhs_cur->link;
+        }
+    }
+    return *this;
+    }
     mystack(std::initializer_list<int>list) : l_top(nullptr), t_size(0)                    //parameaterised constructor
     {
       for (auto it = list.begin(); it != list.end(); ++it)                                  //iterator
@@ -76,13 +102,7 @@ class mystack{
       }
     }
     ~mystack(){                       //destructor
-      sll* cur = l_top;
-      while(cur != nullptr)
-      {
-        sll* nxt = cur->link;
-        delete cur;
-        cur = nxt;
-      }
+      misc::clear(l_top);
     }
 };
 
