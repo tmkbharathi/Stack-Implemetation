@@ -1,4 +1,5 @@
 #include"misc.h"
+#include <initializer_list>
 template <class S>
 
 //class declaration
@@ -66,6 +67,13 @@ class mystack{
             tmp = tmp->link;
         }
         l_top = misc::reverselist(l_top);
+    }
+    mystack(std::initializer_list<int>list) : l_top(nullptr), t_size(0)                    //parameaterised constructor
+    {
+      for (auto it = list.begin(); it != list.end(); ++it)                                  //iterator
+      {
+            push(*it);
+      }
     }
     ~mystack(){                       //destructor
       sll* cur = l_top;
