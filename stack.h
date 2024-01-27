@@ -1,12 +1,6 @@
-#include<iostream>
-using std::cin, std::cout, std::endl;
-//structure declaration
-typedef struct node{
-    int data;
-    struct node* link;
-} sll;
-
+#include"misc.h"
 template <class S>
+
 //class declaration
 class mystack{
    private:
@@ -58,16 +52,28 @@ class mystack{
       }
       return l_top->data;
     }
-    ~mystack(){                       //destructor
-      if(l_top != nullptr)
-      {
-        sll* tmp = l_top;
-        while(tmp->link != nullptr)
+    void swap(mystack &second)         //swap the values in the classes 
+    {
+      std::swap(l_top, second.l_top);
+      std::swap(t_size, second.t_size);
+    }
+    mystack(const mystack& cpystack) : l_top(nullptr), t_size(0)        //copy constructor : Initializer list 
+    {
+        node* tmp = cpystack.l_top;
+        while (tmp != nullptr) 
         {
-            delete tmp;
-            tmp=tmp->link;
+            push(tmp->data);
+            tmp = tmp->link;
         }
-        delete tmp;
+        l_top = misc::reverselist(l_top);
+    }
+    ~mystack(){                       //destructor
+      sll* cur = l_top;
+      while(cur != nullptr)
+      {
+        sll* nxt = cur->link;
+        delete cur;
+        cur = nxt;
       }
     }
 };
